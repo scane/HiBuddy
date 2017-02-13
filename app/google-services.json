@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "99828220879",
+    "firebase_url": "https://hibuddy-23c01.firebaseio.com",
+    "project_id": "hibuddy-23c01",
+    "storage_bucket": "hibuddy-23c01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99828220879:android:0b4ccbe3cd9e066f",
+        "android_client_info": {
+          "package_name": "com.scanba.hibuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99828220879-tmcjl09rq11ah8lhama1haeoau5vsm9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3z7ZP4I8kbGIcLK8zwy-O5doJtFsraUc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
