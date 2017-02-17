@@ -1,7 +1,6 @@
 package com.scanba.hibuddy.models;
 
-
-import com.facebook.Profile;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.HashMap;
@@ -17,7 +16,7 @@ public class Chat {
 
     }
 
-    public Chat(String message, String author, long sentAt) {
+    private Chat(String message, String author, long sentAt) {
         this.message = message;
         this.author = author;
         this.sentAt = sentAt;
@@ -47,9 +46,9 @@ public class Chat {
         this.sentAt = sentAt;
     }
 
-    public static void save(DatabaseReference fireBaseDatabase, Profile profile, String message) {
+    public static void save(DatabaseReference fireBaseDatabase, FirebaseUser user, String message) {
         String key = fireBaseDatabase.child("chat").push().getKey();
-        Chat chat = new Chat(message, profile.getName(), System.currentTimeMillis());
+        Chat chat = new Chat(message, user.getDisplayName(), System.currentTimeMillis());
         Map<String, Object> chats = new HashMap<>();
         chats.put("/chat/" + key, chat);
         fireBaseDatabase.updateChildren(chats);

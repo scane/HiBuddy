@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import com.facebook.Profile;
+import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -29,7 +29,6 @@ public class ChatActivity extends AppCompatActivity {
 
     private DatabaseReference fireBaseDatabase;
     private EditText message;
-    private Profile profile;
     private Query chatQuery;
     private RecyclerView chatHistory;
     private LinearLayoutManager layoutManager;
@@ -50,7 +49,6 @@ public class ChatActivity extends AppCompatActivity {
 
         fireBaseDatabase = FirebaseDatabase.getInstance().getReference();
         message = (EditText) findViewById(R.id.message);
-        profile = Profile.getCurrentProfile();
         setupChatListener();
     }
 
@@ -67,7 +65,10 @@ public class ChatActivity extends AppCompatActivity {
                 //Signout from FireBase
                 FirebaseAuth.getInstance().signOut();
                 //Signout from Facebook
-                LoginManager.getInstance().logOut();
+                AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                if(accessToken != null)
+                    LoginManager.getInstance().logOut();
+
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
 
@@ -113,7 +114,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     public void sendMessage(View v) {
-        Chat.save(fireBaseDatabase, profile, message.getText().toString());
+        Chat.save(fireBaseDatabase, FirebaseAuth.getInstance().getCurrentUser(), message.getText().toString());
         message.setText("");
     }
 }
